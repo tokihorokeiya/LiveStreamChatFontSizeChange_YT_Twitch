@@ -1,0 +1,16 @@
+# Distribution / builds
+*.zip
+build/
+dist/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log

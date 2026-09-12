@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Chatroom Font Size Customizer",
+  "version": "1.0.0",
+  "description": "Adjust font size for YouTube Live popout chat and Twitch popout chat dynamically with no login required.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.twitch.tv/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Chatroom Font Size"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/live_chat*",
+        "*://*.youtube.com/live_chat_replay*",
+        "*://youtube.com/live_chat*",
+        "*://youtube.com/live_chat_replay*",
+        "*://*.twitch.tv/*",
+        "*://twitch.tv/*"
+      ],
+      "all_frames": true,
+      "css": [
+        "content_scripts/content.css"
+      ],
+      "js": [
+        "content_scripts/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

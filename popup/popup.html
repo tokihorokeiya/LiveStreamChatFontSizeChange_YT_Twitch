@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatroom Font Size Customizer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">Aa</span>
+        <div>
+          <h1 class="title">Chat Font Size</h1>
+          <p class="subtitle">YouTube & Twitch Popout</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- YouTube Section -->
+    <section class="platform-section" id="section-yt">
+      <div class="section-header">
+        <div class="platform-title">
+          <span class="platform-dot dot-yt"></span>
+          <span>YouTube Live Chat</span>
+        </div>
+        <span class="active-badge" id="badge-yt" style="display: none;">Active</span>
+      </div>
+
+      <div class="control-row">
+        <button class="btn-step" id="yt-dec" title="Decrease font size">−</button>
+        <span class="font-display" id="yt-size-display">15px</span>
+        <button class="btn-step" id="yt-inc" title="Increase font size">+</button>
+      </div>
+
+      <div class="slider-wrapper">
+        <input type="range" class="slider" id="yt-slider" min="10" max="64" step="1" value="15">
+      </div>
+
+      <div class="preset-row">
+        <button class="preset-btn yt-preset" data-size="14">14px</button>
+        <button class="preset-btn yt-preset" data-size="20">20px</button>
+        <button class="preset-btn yt-preset" data-size="32">32px</button>
+        <button class="preset-btn yt-preset" data-size="48">48px</button>
+        <button class="preset-btn yt-preset" data-size="64">64px</button>
+        <button class="reset-link" id="yt-reset">Reset</button>
+      </div>
+    </section>
+
+    <!-- Twitch Section -->
+    <section class="platform-section" id="section-twitch">
+      <div class="section-header">
+        <div class="platform-title">
+          <span class="platform-dot dot-twitch"></span>
+          <span>Twitch Chat & Queue</span>
+        </div>
+        <span class="active-badge" id="badge-twitch" style="display: none;">Active</span>
+      </div>
+
+      <div class="control-row">
+        <button class="btn-step" id="twitch-dec" title="Decrease font size">−</button>
+        <span class="font-display" id="twitch-size-display">14px</span>
+        <button class="btn-step" id="twitch-inc" title="Increase font size">+</button>
+      </div>
+
+      <div class="slider-wrapper">
+        <input type="range" class="slider" id="twitch-slider" min="10" max="64" step="1" value="14">
+      </div>
+
+      <div class="preset-row">
+        <button class="preset-btn twitch-preset" data-size="14">14px</button>
+        <button class="preset-btn twitch-preset" data-size="20">20px</button>
+        <button class="preset-btn twitch-preset" data-size="32">32px</button>
+        <button class="preset-btn twitch-preset" data-size="48">48px</button>
+        <button class="preset-btn twitch-preset" data-size="64">64px</button>
+        <button class="reset-link" id="twitch-reset">Reset</button>
+      </div>
+    </section>
+
+    <!-- Options / Floating Widget Toggle -->
+    <section class="settings-section">
+      <label class="toggle-container">
+        <span class="toggle-label">Floating "Aa" button in chat</span>
+        <input type="checkbox" id="toggle-floating-widget" checked>
+        <span class="toggle-switch"></span>
+      </label>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Auto-saved locally • No login required</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

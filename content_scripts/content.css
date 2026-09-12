@@ -1,0 +1,381 @@
+/* ==========================================================================
+   Chatroom Font Size Customizer - Content Styles
+   Supports YouTube Live Popout Chat & Twitch Popout Chat / Reward Queue
+   ========================================================================== */
+
+:root {
+  --chat-custom-font-size: 15px;
+}
+
+/* ==========================================================================
+   YouTube Live Chat Overrides
+   ========================================================================== */
+html,
+body,
+yt-live-chat-app,
+yt-live-chat-renderer {
+  --yt-live-chat-font-size: var(--chat-custom-font-size) !important;
+  --yt-live-chat-primary-text-font-size: var(--chat-custom-font-size) !important;
+  --yt-live-chat-secondary-text-font-size: calc(var(--chat-custom-font-size) * 0.85) !important;
+}
+
+yt-live-chat-text-message-renderer #message,
+yt-live-chat-text-message-renderer yt-formatted-string#message,
+yt-live-chat-paid-message-renderer #message,
+yt-live-chat-paid-message-renderer #purchase-amount,
+yt-live-chat-membership-item-renderer #message,
+yt-live-chat-membership-item-renderer #header-subtext,
+yt-live-chat-ticker-renderer,
+yt-live-chat-text-message-renderer #author-name,
+yt-live-chat-author-chip #author-name {
+  font-size: var(--chat-custom-font-size) !important;
+  line-height: 1.35 !important;
+}
+
+yt-live-chat-text-message-renderer #timestamp {
+  font-size: calc(var(--chat-custom-font-size) * 0.8) !important;
+  line-height: normal !important;
+}
+
+/* Auto-scale emojis with font size */
+yt-live-chat-text-message-renderer .emoji,
+yt-live-chat-text-message-renderer img.yt-formatted-string {
+  height: calc(var(--chat-custom-font-size) * 1.3) !important;
+  width: auto !important;
+  vertical-align: middle !important;
+}
+
+/* Author badge alignment and scaling */
+yt-live-chat-author-badge-renderer {
+  vertical-align: middle !important;
+}
+
+yt-live-chat-author-badge-renderer img,
+yt-live-chat-author-badge-renderer yt-icon {
+  width: calc(var(--chat-custom-font-size) * 1.1) !important;
+  height: calc(var(--chat-custom-font-size) * 1.1) !important;
+}
+
+/* ==========================================================================
+   Twitch Popout Chat Overrides
+   ========================================================================== */
+.chat-line__message,
+.chat-line__message--emote,
+.chat-line__message .text-fragment,
+.chat-line__message span[data-a-target="chat-message-text"],
+.chat-line__message .chat-line__username,
+.chat-author__display-name,
+.pinned-chat__message-content,
+.chat-line__status {
+  font-size: var(--chat-custom-font-size) !important;
+  line-height: 1.4 !important;
+}
+
+.chat-line__timestamp {
+  font-size: calc(var(--chat-custom-font-size) * 0.8) !important;
+  line-height: 1.4 !important;
+}
+
+/* Auto-scale Twitch badges and emotes */
+.chat-line__message .chat-image {
+  height: calc(var(--chat-custom-font-size) * 1.3) !important;
+  width: auto !important;
+  vertical-align: middle !important;
+}
+
+.chat-line__message .chat-badge {
+  height: calc(var(--chat-custom-font-size) * 1.15) !important;
+  width: auto !important;
+  vertical-align: middle !important;
+}
+
+/* ==========================================================================
+   Twitch Creator Dashboard & Reward Queue Overrides
+   ========================================================================== */
+/* Direct targeting for redemption cards, viewer message prompt, reward titles */
+.redemption-list-item__context,
+.redemption-list-item__context *,
+.scrollable-area p,
+.scrollable-area span:not(#crf-floating-widget *),
+.scrollable-area h1,
+.scrollable-area h2,
+.scrollable-area h3,
+.scrollable-area h4,
+.scrollable-area h5,
+.scrollable-area h6,
+.sunlight-root [class*="redemption"] p,
+.sunlight-root [class*="redemption"] span:not(#crf-floating-widget *),
+.sunlight-root [class*="reward"] p,
+.sunlight-root [class*="reward"] span:not(#crf-floating-widget *),
+.sunlight-root div[data-test-selector*="reward"] p,
+.sunlight-root div[data-test-selector*="reward"] span:not(#crf-floating-widget *),
+.sunlight-root div[data-a-target*="reward"] p,
+.sunlight-root div[data-a-target*="reward"] span:not(#crf-floating-widget *),
+.intl-login,
+.reward-icon__cost {
+  font-size: var(--chat-custom-font-size) !important;
+  line-height: 1.35 !important;
+}
+
+/* Auto-scale reward icons in queue */
+.reward-icon,
+.reward-icon__image {
+  width: calc(var(--chat-custom-font-size) * 1.3) !important;
+  height: auto !important;
+  vertical-align: middle !important;
+}
+
+/* ==========================================================================
+   In-Chat Floating Control Widget
+   ========================================================================== */
+#crf-floating-widget {
+  position: fixed !important;
+  top: 50% !important;
+  right: 10px !important;
+  transform: translateY(-50%) !important;
+  z-index: 2147483647 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+}
+
+/* The toggle button */
+#crf-toggle-btn {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(30, 30, 40, 0.88) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  opacity: 0.2 !important; /* Substantially transparent when not hovered */
+  transition: opacity 0.25s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s ease, border-color 0.2s ease !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+
+#crf-floating-widget:hover #crf-toggle-btn,
+#crf-floating-widget.crf-panel-open #crf-toggle-btn {
+  opacity: 1 !important;
+  background: rgba(45, 45, 60, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: scale(1.08) !important;
+}
+
+#crf-toggle-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* The expandable control panel */
+#crf-panel {
+  display: none;
+  position: absolute !important;
+  top: 50% !important;
+  right: 44px !important;
+  transform: translateY(-50%) !important;
+  width: 230px !important;
+  background: rgba(22, 22, 30, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 12px !important;
+  padding: 14px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: #f1f1f1 !important;
+  box-sizing: border-box !important;
+}
+
+#crf-panel.crf-show {
+  display: block !important;
+  animation: crf-fade-in 0.18s ease-out;
+}
+
+@keyframes crf-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.crf-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 12px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.crf-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.crf-badge {
+  font-size: 10px !important;
+  padding: 2px 6px !important;
+  background: rgba(139, 92, 246, 0.3) !important;
+  color: #c4b5fd !important;
+  border-radius: 10px !important;
+  font-weight: 500 !important;
+}
+
+.crf-close-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #888 !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  padding: 0 4px !important;
+  line-height: 1 !important;
+}
+
+.crf-close-btn:hover {
+  color: #fff !important;
+}
+
+/* Value row with - and + */
+.crf-control-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 10px !important;
+  gap: 8px !important;
+}
+
+.crf-btn-step {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background 0.15s !important;
+}
+
+.crf-btn-step:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.crf-btn-step:active {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.crf-size-value {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #a78bfa !important;
+  min-width: 45px !important;
+  text-align: center !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* Slider */
+.crf-slider-container {
+  margin-bottom: 12px !important;
+}
+
+.crf-slider {
+  width: 100% !important;
+  height: 6px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-radius: 3px !important;
+  outline: none !important;
+  cursor: pointer !important;
+}
+
+.crf-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  background: #a78bfa !important;
+  box-shadow: 0 0 6px rgba(167, 139, 250, 0.6) !important;
+  cursor: pointer !important;
+  transition: transform 0.1s !important;
+}
+
+.crf-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2) !important;
+}
+
+/* Presets */
+.crf-presets {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 4px !important;
+  margin-bottom: 10px !important;
+}
+
+.crf-preset-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ccc !important;
+  border-radius: 4px !important;
+  padding: 4px 0 !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: all 0.15s !important;
+}
+
+.crf-preset-btn:hover {
+  background: rgba(167, 139, 250, 0.25) !important;
+  color: #fff !important;
+  border-color: rgba(167, 139, 250, 0.4) !important;
+}
+
+.crf-preset-btn.crf-active {
+  background: #8b5cf6 !important;
+  color: #ffffff !important;
+  border-color: #8b5cf6 !important;
+  font-weight: 600 !important;
+}
+
+/* Footer / Reset */
+.crf-footer {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.crf-reset-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #999 !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+  padding: 2px 4px !important;
+  text-decoration: underline !important;
+  transition: color 0.15s !important;
+}
+
+.crf-reset-btn:hover {
+  color: #e2e8f0 !important;
+}
