@@ -49,33 +49,63 @@
       </div>
     </section>
 
-    <!-- Twitch Section -->
-    <section class="platform-section" id="section-twitch">
+    <!-- Twitch Chat Section -->
+    <section class="platform-section" id="section-twitch-chat">
       <div class="section-header">
         <div class="platform-title">
           <span class="platform-dot dot-twitch"></span>
-          <span>Twitch Chat & Queue</span>
+          <span>Twitch Popout / Stream Manager Chat</span>
         </div>
-        <span class="active-badge" id="badge-twitch" style="display: none;">Active</span>
+        <span class="active-badge" id="badge-twitch-chat" style="display: none;">Active</span>
       </div>
 
       <div class="control-row">
-        <button class="btn-step" id="twitch-dec" title="Decrease font size">−</button>
-        <span class="font-display" id="twitch-size-display">14px</span>
-        <button class="btn-step" id="twitch-inc" title="Increase font size">+</button>
+        <button class="btn-step" id="twitch-chat-dec" title="Decrease font size">−</button>
+        <span class="font-display" id="twitch-chat-size-display">14px</span>
+        <button class="btn-step" id="twitch-chat-inc" title="Increase font size">+</button>
       </div>
 
       <div class="slider-wrapper">
-        <input type="range" class="slider" id="twitch-slider" min="10" max="64" step="1" value="14">
+        <input type="range" class="slider" id="twitch-chat-slider" min="10" max="64" step="1" value="14">
       </div>
 
       <div class="preset-row">
-        <button class="preset-btn twitch-preset" data-size="14">14px</button>
-        <button class="preset-btn twitch-preset" data-size="20">20px</button>
-        <button class="preset-btn twitch-preset" data-size="32">32px</button>
-        <button class="preset-btn twitch-preset" data-size="48">48px</button>
-        <button class="preset-btn twitch-preset" data-size="64">64px</button>
-        <button class="reset-link" id="twitch-reset">Reset</button>
+        <button class="preset-btn twitch-chat-preset" data-size="14">14px</button>
+        <button class="preset-btn twitch-chat-preset" data-size="20">20px</button>
+        <button class="preset-btn twitch-chat-preset" data-size="32">32px</button>
+        <button class="preset-btn twitch-chat-preset" data-size="48">48px</button>
+        <button class="preset-btn twitch-chat-preset" data-size="64">64px</button>
+        <button class="reset-link" id="twitch-chat-reset">Reset</button>
+      </div>
+    </section>
+
+    <!-- Twitch Reward Queue Section -->
+    <section class="platform-section" id="section-twitch-queue">
+      <div class="section-header">
+        <div class="platform-title">
+          <span class="platform-dot dot-twitch-queue"></span>
+          <span>Twitch Reward Queue</span>
+        </div>
+        <span class="active-badge" id="badge-twitch-queue" style="display: none;">Active</span>
+      </div>
+
+      <div class="control-row">
+        <button class="btn-step" id="twitch-queue-dec" title="Decrease font size">−</button>
+        <span class="font-display" id="twitch-queue-size-display">14px</span>
+        <button class="btn-step" id="twitch-queue-inc" title="Increase font size">+</button>
+      </div>
+
+      <div class="slider-wrapper">
+        <input type="range" class="slider" id="twitch-queue-slider" min="10" max="64" step="1" value="14">
+      </div>
+
+      <div class="preset-row">
+        <button class="preset-btn twitch-queue-preset" data-size="14">14px</button>
+        <button class="preset-btn twitch-queue-preset" data-size="20">20px</button>
+        <button class="preset-btn twitch-queue-preset" data-size="32">32px</button>
+        <button class="preset-btn twitch-queue-preset" data-size="48">48px</button>
+        <button class="preset-btn twitch-queue-preset" data-size="64">64px</button>
+        <button class="reset-link" id="twitch-queue-reset">Reset</button>
       </div>
     </section>
 

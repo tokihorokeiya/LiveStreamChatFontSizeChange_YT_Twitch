@@ -109,6 +109,11 @@ body {
   box-shadow: 0 0 6px rgba(169, 112, 255, 0.5);
 }
 
+.dot-twitch-queue {
+  background-color: #00e6cb;
+  box-shadow: 0 0 6px rgba(0, 230, 203, 0.5);
+}
+
 .active-badge {
   font-size: 9px;
   font-weight: 600;

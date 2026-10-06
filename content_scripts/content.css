@@ -92,34 +92,22 @@ yt-live-chat-author-badge-renderer yt-icon {
 /* ==========================================================================
    Twitch Creator Dashboard & Reward Queue Overrides
    ========================================================================== */
-/* Direct targeting for redemption cards, viewer message prompt, reward titles */
+/* Direct targeting for Creator Dashboard reward queue redemption cards, viewer messages, and titles */
 .redemption-list-item__context,
 .redemption-list-item__context *,
-.scrollable-area p,
-.scrollable-area span:not(#crf-floating-widget *),
-.scrollable-area h1,
-.scrollable-area h2,
-.scrollable-area h3,
-.scrollable-area h4,
-.scrollable-area h5,
-.scrollable-area h6,
-.sunlight-root [class*="redemption"] p,
-.sunlight-root [class*="redemption"] span:not(#crf-floating-widget *),
-.sunlight-root [class*="reward"] p,
-.sunlight-root [class*="reward"] span:not(#crf-floating-widget *),
-.sunlight-root div[data-test-selector*="reward"] p,
-.sunlight-root div[data-test-selector*="reward"] span:not(#crf-floating-widget *),
-.sunlight-root div[data-a-target*="reward"] p,
-.sunlight-root div[data-a-target*="reward"] span:not(#crf-floating-widget *),
-.intl-login,
-.reward-icon__cost {
+.sunlight-root [class*="redemption-list-item"] p,
+.sunlight-root [class*="redemption-list-item"] span:not(#crf-floating-widget *),
+.sunlight-root [data-test-selector*="redemption"] p,
+.sunlight-root [data-test-selector*="redemption"] span:not(#crf-floating-widget *),
+.sunlight-root [data-a-target*="redemption"] p,
+.sunlight-root [data-a-target*="redemption"] span:not(#crf-floating-widget *) {
   font-size: var(--chat-custom-font-size) !important;
   line-height: 1.35 !important;
 }
 
-/* Auto-scale reward icons in queue */
-.reward-icon,
-.reward-icon__image {
+/* Auto-scale redemption queue icons only */
+.redemption-list-item [class*="reward-icon"],
+.redemption-list-item img {
   width: calc(var(--chat-custom-font-size) * 1.3) !important;
   height: auto !important;
   vertical-align: middle !important;

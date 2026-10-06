@@ -12,21 +12,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectionYt = document.getElementById('section-yt');
   const badgeYt = document.getElementById('badge-yt');
 
-  // DOM elements - Twitch
-  const twitchSlider = document.getElementById('twitch-slider');
-  const twitchDisplay = document.getElementById('twitch-size-display');
-  const twitchDec = document.getElementById('twitch-dec');
-  const twitchInc = document.getElementById('twitch-inc');
-  const twitchReset = document.getElementById('twitch-reset');
-  const twitchPresets = Array.from(document.querySelectorAll('.twitch-preset'));
-  const sectionTwitch = document.getElementById('section-twitch');
-  const badgeTwitch = document.getElementById('badge-twitch');
+  // DOM elements - Twitch Chat
+  const twitchChatSlider = document.getElementById('twitch-chat-slider');
+  const twitchChatDisplay = document.getElementById('twitch-chat-size-display');
+  const twitchChatDec = document.getElementById('twitch-chat-dec');
+  const twitchChatInc = document.getElementById('twitch-chat-inc');
+  const twitchChatReset = document.getElementById('twitch-chat-reset');
+  const twitchChatPresets = Array.from(document.querySelectorAll('.twitch-chat-preset'));
+  const sectionTwitchChat = document.getElementById('section-twitch-chat');
+  const badgeTwitchChat = document.getElementById('badge-twitch-chat');
+
+  // DOM elements - Twitch Reward Queue
+  const twitchQueueSlider = document.getElementById('twitch-queue-slider');
+  const twitchQueueDisplay = document.getElementById('twitch-queue-size-display');
+  const twitchQueueDec = document.getElementById('twitch-queue-dec');
+  const twitchQueueInc = document.getElementById('twitch-queue-inc');
+  const twitchQueueReset = document.getElementById('twitch-queue-reset');
+  const twitchQueuePresets = Array.from(document.querySelectorAll('.twitch-queue-preset'));
+  const sectionTwitchQueue = document.getElementById('section-twitch-queue');
+  const badgeTwitchQueue = document.getElementById('badge-twitch-queue');
 
   // DOM elements - Settings
   const toggleFloating = document.getElementById('toggle-floating-widget');
 
   let currentYtSize = DEFAULT_YT_SIZE;
-  let currentTwitchSize = DEFAULT_TWITCH_SIZE;
+  let currentTwitchChatSize = DEFAULT_TWITCH_SIZE;
+  let currentTwitchQueueSize = DEFAULT_TWITCH_SIZE;
 
   function updateYtUI(size) {
     currentYtSize = Math.max(10, Math.min(64, Number(size) || DEFAULT_YT_SIZE));
@@ -39,14 +50,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function updateTwitchUI(size) {
-    currentTwitchSize = Math.max(10, Math.min(64, Number(size) || DEFAULT_TWITCH_SIZE));
-    twitchSlider.value = currentTwitchSize;
-    twitchDisplay.textContent = `${currentTwitchSize}px`;
+  function updateTwitchChatUI(size) {
+    currentTwitchChatSize = Math.max(10, Math.min(64, Number(size) || DEFAULT_TWITCH_SIZE));
+    twitchChatSlider.value = currentTwitchChatSize;
+    twitchChatDisplay.textContent = `${currentTwitchChatSize}px`;
 
-    twitchPresets.forEach(btn => {
+    twitchChatPresets.forEach(btn => {
       const pSize = Number(btn.getAttribute('data-size'));
-      btn.classList.toggle('preset-active', pSize === currentTwitchSize);
+      btn.classList.toggle('preset-active', pSize === currentTwitchChatSize);
+    });
+  }
+
+  function updateTwitchQueueUI(size) {
+    currentTwitchQueueSize = Math.max(10, Math.min(64, Number(size) || DEFAULT_TWITCH_SIZE));
+    twitchQueueSlider.value = currentTwitchQueueSize;
+    twitchQueueDisplay.textContent = `${currentTwitchQueueSize}px`;
+
+    twitchQueuePresets.forEach(btn => {
+      const pSize = Number(btn.getAttribute('data-size'));
+      btn.classList.toggle('preset-active', pSize === currentTwitchQueueSize);
     });
   }
 
@@ -55,22 +77,36 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.storage.local.set({ yt_font_size: currentYtSize });
   }
 
-  function saveTwitchSize(size) {
-    updateTwitchUI(size);
-    chrome.storage.local.set({ twitch_font_size: currentTwitchSize });
+  function saveTwitchChatSize(size) {
+    updateTwitchChatUI(size);
+    chrome.storage.local.set({ twitch_chat_font_size: currentTwitchChatSize });
   }
 
-  // Load saved values
-  chrome.storage.local.get(['yt_font_size', 'twitch_font_size', 'show_floating_widget'], (res) => {
+  function saveTwitchQueueSize(size) {
+    updateTwitchQueueUI(size);
+    chrome.storage.local.set({ twitch_reward_queue_font_size: currentTwitchQueueSize });
+  }
+
+  // Load saved values with backward compatibility
+  chrome.storage.local.get([
+    'yt_font_size',
+    'twitch_font_size',
+    'twitch_chat_font_size',
+    'twitch_reward_queue_font_size',
+    'show_floating_widget'
+  ], (res) => {
     if (chrome.runtime.lastError) {
       console.warn('Storage error:', chrome.runtime.lastError);
     }
     const ytSize = res?.yt_font_size ?? DEFAULT_YT_SIZE;
-    const twitchSize = res?.twitch_font_size ?? DEFAULT_TWITCH_SIZE;
+    const legacyTwitch = res?.twitch_font_size ?? DEFAULT_TWITCH_SIZE;
+    const twitchChatSize = res?.twitch_chat_font_size ?? legacyTwitch;
+    const twitchQueueSize = res?.twitch_reward_queue_font_size ?? legacyTwitch;
     const showWidget = res?.show_floating_widget ?? true;
 
     updateYtUI(ytSize);
-    updateTwitchUI(twitchSize);
+    updateTwitchChatUI(twitchChatSize);
+    updateTwitchQueueUI(twitchQueueSize);
     toggleFloating.checked = showWidget;
   });
 
@@ -85,14 +121,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Twitch listeners
-  twitchSlider.addEventListener('input', (e) => saveTwitchSize(e.target.value));
-  twitchDec.addEventListener('click', () => saveTwitchSize(currentTwitchSize - 1));
-  twitchInc.addEventListener('click', () => saveTwitchSize(currentTwitchSize + 1));
-  twitchReset.addEventListener('click', () => saveTwitchSize(DEFAULT_TWITCH_SIZE));
-  twitchPresets.forEach(btn => {
+  // Twitch Chat listeners
+  twitchChatSlider.addEventListener('input', (e) => saveTwitchChatSize(e.target.value));
+  twitchChatDec.addEventListener('click', () => saveTwitchChatSize(currentTwitchChatSize - 1));
+  twitchChatInc.addEventListener('click', () => saveTwitchChatSize(currentTwitchChatSize + 1));
+  twitchChatReset.addEventListener('click', () => saveTwitchChatSize(DEFAULT_TWITCH_SIZE));
+  twitchChatPresets.forEach(btn => {
     btn.addEventListener('click', () => {
-      saveTwitchSize(Number(btn.getAttribute('data-size')));
+      saveTwitchChatSize(Number(btn.getAttribute('data-size')));
+    });
+  });
+
+  // Twitch Reward Queue listeners
+  twitchQueueSlider.addEventListener('input', (e) => saveTwitchQueueSize(e.target.value));
+  twitchQueueDec.addEventListener('click', () => saveTwitchQueueSize(currentTwitchQueueSize - 1));
+  twitchQueueInc.addEventListener('click', () => saveTwitchQueueSize(currentTwitchQueueSize + 1));
+  twitchQueueReset.addEventListener('click', () => saveTwitchQueueSize(DEFAULT_TWITCH_SIZE));
+  twitchQueuePresets.forEach(btn => {
+    btn.addEventListener('click', () => {
+      saveTwitchQueueSize(Number(btn.getAttribute('data-size')));
     });
   });
 
@@ -111,9 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (url.includes('youtube.com/live_chat')) {
         sectionYt.classList.add('active-platform');
         badgeYt.style.display = 'inline-block';
+      } else if (url.includes('reward-queue')) {
+        sectionTwitchQueue.classList.add('active-platform');
+        badgeTwitchQueue.style.display = 'inline-block';
       } else if (url.includes('twitch.tv')) {
-        sectionTwitch.classList.add('active-platform');
-        badgeTwitch.style.display = 'inline-block';
+        sectionTwitchChat.classList.add('active-platform');
+        badgeTwitchChat.style.display = 'inline-block';
       }
     });
   }

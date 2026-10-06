@@ -30,7 +30,9 @@
 
   const platform = isYouTube ? 'youtube' : 'twitch';
   const defaultFontSize = isYouTube ? 15 : 14;
-  const storageKey = isYouTube ? 'yt_font_size' : 'twitch_font_size';
+  const storageKey = isYouTube
+    ? 'yt_font_size'
+    : (isTwitchRewardQueue ? 'twitch_reward_queue_font_size' : 'twitch_chat_font_size');
 
   let currentFontSize = defaultFontSize;
   let showWidget = true;
@@ -79,11 +81,12 @@
   }
 
   // Load initial settings from chrome.storage.local
-  chrome.storage.local.get([storageKey, 'show_floating_widget'], (result) => {
+  chrome.storage.local.get([storageKey, 'twitch_font_size', 'show_floating_widget'], (result) => {
     if (chrome.runtime.lastError) {
       console.warn('[ChatroomFontPlugin] Storage error:', chrome.runtime.lastError);
     }
-    const savedSize = result ? result[storageKey] : null;
+    // Fall back to legacy twitch_font_size if specific key is not set yet
+    const savedSize = result ? (result[storageKey] ?? (isTwitch ? result['twitch_font_size'] : null)) : null;
     if (savedSize) {
       applyFontSize(savedSize);
     } else {

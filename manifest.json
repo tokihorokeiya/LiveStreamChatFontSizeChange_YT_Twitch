@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Chatroom Font Size Customizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adjust font size for YouTube Live popout chat and Twitch popout chat dynamically with no login required.",
   "permissions": [
     "storage"
